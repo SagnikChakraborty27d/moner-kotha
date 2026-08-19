@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap');
+@tailwind base; @tailwind components; @tailwind utilities;
+:root{--ink:#0d0b10;--cream:#f4ead8;--gold:#f2ca55;--terr:#7c3828;--wine:#3d1d1a;--blue:#151d39}
+*{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:#09080c;color:var(--cream);font-family:Georgia,serif} button{font:inherit}
+.glass{background:linear-gradient(120deg,rgba(255,255,255,.12),rgba(255,255,255,.045));border:1px solid rgba(255,255,255,.14);box-shadow:0 20px 70px rgba(0,0,0,.25);backdrop-filter:blur(18px)}
+.hero{background:radial-gradient(circle at 75% 20%,rgba(242,202,85,.23),transparent 22%),linear-gradient(160deg,#090a18 0%,#141936 43%,#3a201c 100%);position:relative;overflow:hidden}
+.hero:before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 18% 70%,rgba(198,78,38,.35),transparent 30%),radial-gradient(circle at 70% 80%,rgba(242,202,85,.12),transparent 25%);pointer-events:none}
+.lamp{width:10px;height:10px;border-radius:999px;background:#ffe6a1;box-shadow:0 0 10px 5px rgba(242,202,85,.42);position:absolute}
+.pandal{position:absolute;right:-7vw;bottom:-2rem;width:min(52vw,650px);height:420px;opacity:.88;filter:drop-shadow(0 30px 45px rgba(0,0,0,.35));background:linear-gradient(135deg,transparent 8%,rgba(164,105,50,.7) 9% 11%,transparent 12%),repeating-linear-gradient(90deg,rgba(145,90,46,.8) 0 9px,transparent 9px 19px);clip-path:polygon(8% 100%,20% 30%,50% 0,80% 30%,92% 100%)}
+.pandal:after{content:'দুর্গা';position:absolute;left:39%;top:42%;font-family:'Noto Serif Bengali',serif;font-size:56px;color:#f5d15e;text-shadow:0 0 18px rgba(242,202,85,.45)}
+.section-title{font-family:'Playfair Display','Noto Serif Bengali',serif;letter-spacing:.02em}.bengali{font-family:'Noto Serif Bengali',serif}.scrollbar::-webkit-scrollbar{display:none}.scrollbar{scrollbar-width:none}

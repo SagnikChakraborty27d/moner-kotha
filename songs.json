@@ -1,0 +1,886 @@
+[
+  {
+    "id": "song-001",
+    "title": "Menoka Mathaye Dilo",
+    "artist": "Bhoomi",
+    "category": "Modern Pujo Hits",
+    "moods": [
+      "Pujo Morning",
+      "Festive",
+      "Joyful"
+    ],
+    "duration": "3:45",
+    "cover": null,
+    "youtubeId": null,
+    "spotifyUrl": null,
+    "appleMusicUrl": null,
+    "previewUrl": null
+  },
+  {
+    "id": "song-002",
+    "title": "O Thakur",
+    "artist": "Upal",
+    "category": "Modern Pujo Hits",
+    "moods": [
+      "Devotional",
+      "Pujo Morning",
+      "Warm"
+    ],
+    "duration": "3:45",
+    "cover": null,
+    "youtubeId": null,
+    "spotifyUrl": null,
+    "appleMusicUrl": null,
+    "previewUrl": null
+  },
+  {
+    "id": "song-003",
+    "title": "Duggi Elo Ghore",
+    "artist": "Dr. Rajkumar",
+    "category": "Modern Pujo Hits",
+    "moods": [
+      "Festive",
+      "Energetic",
+      "Pujo Night"
+    ],
+    "duration": "3:45",
+    "cover": null,
+    "youtubeId": null,
+    "spotifyUrl": null,
+    "appleMusicUrl": null,
+    "previewUrl": null
+  },
+  {
+    "id": "song-004",
+    "title": "Subho Bijoya",
+    "artist": "Rajkumar",
+    "category": "Modern Pujo Hits",
+    "moods": [
+      "Bijoya",
+      "Nostalgic",
+      "Warm"
+    ],
+    "duration": "3:45",
+    "cover": null,
+    "youtubeId": null,
+    "spotifyUrl": null,
+    "appleMusicUrl": null,
+    "previewUrl": null
+  },
+  {
+    "id": "song-005",
+    "title": "Pujo Asha Mane",
+    "artist": "Iman",
+    "category": "Modern Pujo Hits",
+    "moods": [
+      "Pujo Morning",
+      "Hopeful",
+      "Festive"
+    ],
+    "duration": "3:45",
+    "cover": null,
+    "youtubeId": null,
+    "spotifyUrl": null,
+    "appleMusicUrl": null,
+    "previewUrl": null
+  },
+  {
+    "id": "song-006",
+    "title": "Somarohe",
+    "artist": "Ishan Mitra",
+    "category": "Modern Pujo Hits",
+    "moods": [
+      "Festive",
+      "Cinematic",
+      "Warm"
+    ],
+    "duration": "3:45",
+    "cover": null,
+    "youtubeId": null,
+    "spotifyUrl": null,
+    "appleMusicUrl": null,
+    "previewUrl": null
+  },
+  {
+    "id": "song-007",
+    "title": "Gouri Elo",
+    "artist": "Antara Nandy",
+    "category": "Modern Pujo Hits",
+    "moods": [
+      "Agomoni",
+      "Joyful",
+      "Pujo Morning"
+    ],
+    "duration": "3:45",
+    "cover": null,
+    "youtubeId": null,
+    "spotifyUrl": null,
+    "appleMusicUrl": null,
+    "previewUrl": null
+  },
+  {
+    "id": "song-008",
+    "title": "Durgatinashini",
+    "artist": "Rajkumar Roy",
+    "category": "Modern Pujo Hits",
+    "moods": [
+      "Devotional",
+      "Powerful",
+      "Mahalaya"
+    ],
+    "duration": "3:45",
+    "cover": null,
+    "youtubeId": null,
+    "spotifyUrl": null,
+    "appleMusicUrl": null,
+    "previewUrl": null
+  },
+  {
+    "id": "song-009",
+    "title": "Nari Tumii Durga",
+    "artist": "Ishan Mitra",
+    "category": "Modern Pujo Hits",
+    "moods": [
+      "Powerful",
+      "Festive",
+      "Modern"
+    ],
+    "duration": "3:45",
+    "cover": null,
+    "youtubeId": null,
+    "spotifyUrl": null,
+    "appleMusicUrl": null,
+    "previewUrl": null
+  },
+  {
+    "id": "song-010",
+    "title": "Komola Sundori Nache",
+    "artist": "Ankita Bhattacharyya",
+    "category": "Modern Pujo Hits",
+    "moods": [
+      "Festive",
+      "Dance",
+      "Joyful"
+    ],
+    "duration": "3:45",
+    "cover": null,
+    "youtubeId": null,
+    "spotifyUrl": null,
+    "appleMusicUrl": null,
+    "previewUrl": null
+  },
+  {
+    "id": "song-011",
+    "title": "Porlo Dhake Kathi",
+    "artist": "Iman Chakraborty",
+    "category": "Modern Pujo Hits",
+    "moods": [
+      "Dhak",
+      "Energetic",
+      "Pujo Night"
+    ],
+    "duration": "3:45",
+    "cover": null,
+    "youtubeId": null,
+    "spotifyUrl": null,
+    "appleMusicUrl": null,
+    "previewUrl": null
+  },
+  {
+    "id": "song-012",
+    "title": "Elo Je Maa",
+    "artist": "Soumya",
+    "category": "Modern Pujo Hits",
+    "moods": [
+      "Agomoni",
+      "Devotional",
+      "Warm"
+    ],
+    "duration": "3:45",
+    "cover": null,
+    "youtubeId": null,
+    "spotifyUrl": null,
+    "appleMusicUrl": null,
+    "previewUrl": null
+  },
+  {
+    "id": "song-013",
+    "title": "Sharodiya Sur",
+    "artist": "Anweshaa",
+    "category": "Modern Pujo Hits",
+    "moods": [
+      "Sharodiya",
+      "Calcutta Evening",
+      "Warm"
+    ],
+    "duration": "3:45",
+    "cover": null,
+    "youtubeId": null,
+    "spotifyUrl": null,
+    "appleMusicUrl": null,
+    "previewUrl": null
+  },
+  {
+    "id": "song-014",
+    "title": "Uma Ashe Notun Saje",
+    "artist": "Ankita Bhattacharyya",
+    "category": "Modern Pujo Hits",
+    "moods": [
+      "Agomoni",
+      "Festive",
+      "Joyful"
+    ],
+    "duration": "3:45",
+    "cover": null,
+    "youtubeId": null,
+    "spotifyUrl": null,
+    "appleMusicUrl": null,
+    "previewUrl": null
+  },
+  {
+    "id": "song-015",
+    "title": "O Menoka O Menoka",
+    "artist": "Antara Nandy",
+    "category": "Modern Pujo Hits",
+    "moods": [
+      "Agomoni",
+      "Playful",
+      "Festive"
+    ],
+    "duration": "3:45",
+    "cover": null,
+    "youtubeId": null,
+    "spotifyUrl": null,
+    "appleMusicUrl": null,
+    "previewUrl": null
+  },
+  {
+    "id": "song-016",
+    "title": "Ay Re Chute Aye Pujor",
+    "artist": "Various Artists",
+    "category": "Modern Pujo Hits",
+    "moods": [
+      "Festive",
+      "Energetic",
+      "Pujo Night"
+    ],
+    "duration": "3:45",
+    "cover": null,
+    "youtubeId": null,
+    "spotifyUrl": null,
+    "appleMusicUrl": null,
+    "previewUrl": null
+  },
+  {
+    "id": "song-017",
+    "title": "Dhak Baja Kashor Baja",
+    "artist": "Various Artists",
+    "category": "Modern Pujo Hits",
+    "moods": [
+      "Dhak",
+      "Energetic",
+      "Pujo Night"
+    ],
+    "duration": "3:45",
+    "cover": null,
+    "youtubeId": null,
+    "spotifyUrl": null,
+    "appleMusicUrl": null,
+    "previewUrl": null
+  },
+  {
+    "id": "song-018",
+    "title": "Dhaker Tale Komor Dole",
+    "artist": "Various Artists",
+    "category": "Modern Pujo Hits",
+    "moods": [
+      "Dhak",
+      "Dance",
+      "Festive"
+    ],
+    "duration": "3:45",
+    "cover": null,
+    "youtubeId": null,
+    "spotifyUrl": null,
+    "appleMusicUrl": null,
+    "previewUrl": null
+  },
+  {
+    "id": "song-019",
+    "title": "Durga Stabaraj",
+    "artist": "Hemanta Mukherjee",
+    "category": "Nostalgic Agomoni & Mahalaya",
+    "moods": [
+      "Mahalaya",
+      "Dawn",
+      "Devotional"
+    ],
+    "duration": "3:45",
+    "cover": null,
+    "youtubeId": null,
+    "spotifyUrl": null,
+    "appleMusicUrl": null,
+    "previewUrl": null
+  },
+  {
+    "id": "song-020",
+    "title": "Agamani Gaan Shona Jay",
+    "artist": "Manna Dey",
+    "category": "Nostalgic Agomoni & Mahalaya",
+    "moods": [
+      "Agomoni",
+      "Nostalgic",
+      "Dawn"
+    ],
+    "duration": "3:45",
+    "cover": null,
+    "youtubeId": null,
+    "spotifyUrl": null,
+    "appleMusicUrl": null,
+    "previewUrl": null
+  },
+  {
+    "id": "song-021",
+    "title": "Durge Durge Durgatinashini",
+    "artist": "Asha Bhosle",
+    "category": "Nostalgic Agomoni & Mahalaya",
+    "moods": [
+      "Mahalaya",
+      "Devotional",
+      "Powerful"
+    ],
+    "duration": "3:45",
+    "cover": null,
+    "youtubeId": null,
+    "spotifyUrl": null,
+    "appleMusicUrl": null,
+    "previewUrl": null
+  },
+  {
+    "id": "song-022",
+    "title": "Jago Jogmaya Jago Mrinmoyee",
+    "artist": "Manabendra Mukherjee",
+    "category": "Nostalgic Agomoni & Mahalaya",
+    "moods": [
+      "Mahalaya",
+      "Dawn",
+      "Devotional"
+    ],
+    "duration": "3:45",
+    "cover": null,
+    "youtubeId": null,
+    "spotifyUrl": null,
+    "appleMusicUrl": null,
+    "previewUrl": null
+  },
+  {
+    "id": "song-023",
+    "title": "Aji Shankhe Shankhe Mangala Gao",
+    "artist": "Anup Ghoshal",
+    "category": "Nostalgic Agomoni & Mahalaya",
+    "moods": [
+      "Agomoni",
+      "Dawn",
+      "Warm"
+    ],
+    "duration": "3:45",
+    "cover": null,
+    "youtubeId": null,
+    "spotifyUrl": null,
+    "appleMusicUrl": null,
+    "previewUrl": null
+  },
+  {
+    "id": "song-024",
+    "title": "Trinayanee Maa",
+    "artist": "Manna Dey",
+    "category": "Nostalgic Agomoni & Mahalaya",
+    "moods": [
+      "Devotional",
+      "Mahalaya",
+      "Nostalgic"
+    ],
+    "duration": "3:45",
+    "cover": null,
+    "youtubeId": null,
+    "spotifyUrl": null,
+    "appleMusicUrl": null,
+    "previewUrl": null
+  },
+  {
+    "id": "song-025",
+    "title": "Jago Durga Dashapraharanadharinee",
+    "artist": "Dwijen Mukherjee",
+    "category": "Nostalgic Agomoni & Mahalaya",
+    "moods": [
+      "Mahalaya",
+      "Powerful",
+      "Dawn"
+    ],
+    "duration": "3:45",
+    "cover": null,
+    "youtubeId": null,
+    "spotifyUrl": null,
+    "appleMusicUrl": null,
+    "previewUrl": null
+  },
+  {
+    "id": "song-026",
+    "title": "Joy Joy Durge Durgatiharini",
+    "artist": "Madhuri Mukherjee",
+    "category": "Nostalgic Agomoni & Mahalaya",
+    "moods": [
+      "Devotional",
+      "Mahalaya",
+      "Warm"
+    ],
+    "duration": "3:45",
+    "cover": null,
+    "youtubeId": null,
+    "spotifyUrl": null,
+    "appleMusicUrl": null,
+    "previewUrl": null
+  },
+  {
+    "id": "song-027",
+    "title": "Mahabidya Adyashakti",
+    "artist": "Ajoy Chakraborty",
+    "category": "Nostalgic Agomoni & Mahalaya",
+    "moods": [
+      "Devotional",
+      "Mahalaya",
+      "Meditative"
+    ],
+    "duration": "3:45",
+    "cover": null,
+    "youtubeId": null,
+    "spotifyUrl": null,
+    "appleMusicUrl": null,
+    "previewUrl": null
+  },
+  {
+    "id": "song-028",
+    "title": "Joy Maa Bhawani",
+    "artist": "Chhabi Banerjee",
+    "category": "Nostalgic Agomoni & Mahalaya",
+    "moods": [
+      "Devotional",
+      "Vintage",
+      "Warm"
+    ],
+    "duration": "3:45",
+    "cover": null,
+    "youtubeId": null,
+    "spotifyUrl": null,
+    "appleMusicUrl": null,
+    "previewUrl": null
+  },
+  {
+    "id": "song-029",
+    "title": "Argala Stotram",
+    "artist": "Swapan Chakraborty",
+    "category": "Nostalgic Agomoni & Mahalaya",
+    "moods": [
+      "Devotional",
+      "Meditative",
+      "Mahalaya"
+    ],
+    "duration": "3:45",
+    "cover": null,
+    "youtubeId": null,
+    "spotifyUrl": null,
+    "appleMusicUrl": null,
+    "previewUrl": null
+  },
+  {
+    "id": "song-030",
+    "title": "Joy Maa Durga",
+    "artist": "Raghab Chatterjee",
+    "category": "Nostalgic Agomoni & Mahalaya",
+    "moods": [
+      "Devotional",
+      "Festive",
+      "Warm"
+    ],
+    "duration": "3:45",
+    "cover": null,
+    "youtubeId": null,
+    "spotifyUrl": null,
+    "appleMusicUrl": null,
+    "previewUrl": null
+  },
+  {
+    "id": "song-031",
+    "title": "Bajlo Tomar Alor Benu",
+    "artist": "Various Artists",
+    "category": "Nostalgic Agomoni & Mahalaya",
+    "moods": [
+      "Mahalaya",
+      "Nostalgic",
+      "Dawn"
+    ],
+    "duration": "3:45",
+    "cover": null,
+    "youtubeId": null,
+    "spotifyUrl": null,
+    "appleMusicUrl": null,
+    "previewUrl": null
+  },
+  {
+    "id": "song-032",
+    "title": "Mone Pore Ruby Roy",
+    "artist": "R. D. Burman",
+    "category": "Vintage Old Calcutta",
+    "moods": [
+      "Calcutta Evening",
+      "Nostalgic",
+      "Romantic"
+    ],
+    "duration": "3:45",
+    "cover": null,
+    "youtubeId": null,
+    "spotifyUrl": null,
+    "appleMusicUrl": null,
+    "previewUrl": null
+  },
+  {
+    "id": "song-033",
+    "title": "Amar Swapna Tumi Ogo",
+    "artist": "Asha Bhosle",
+    "category": "Vintage Old Calcutta",
+    "moods": [
+      "Romantic",
+      "Vintage",
+      "Rainy Afternoon"
+    ],
+    "duration": "3:45",
+    "cover": null,
+    "youtubeId": null,
+    "spotifyUrl": null,
+    "appleMusicUrl": null,
+    "previewUrl": null
+  },
+  {
+    "id": "song-034",
+    "title": "Ami Chini Go Chini Tomare",
+    "artist": "Kishore Kumar",
+    "category": "Vintage Old Calcutta",
+    "moods": [
+      "Romantic",
+      "Vintage",
+      "Warm"
+    ],
+    "duration": "3:45",
+    "cover": null,
+    "youtubeId": null,
+    "spotifyUrl": null,
+    "appleMusicUrl": null,
+    "previewUrl": null
+  },
+  {
+    "id": "song-035",
+    "title": "Sei Raate Raat Chhilo Purnima",
+    "artist": "Kishore Kumar",
+    "category": "Vintage Old Calcutta",
+    "moods": [
+      "Calcutta Evening",
+      "Romantic",
+      "Moonlit"
+    ],
+    "duration": "3:45",
+    "cover": null,
+    "youtubeId": null,
+    "spotifyUrl": null,
+    "appleMusicUrl": null,
+    "previewUrl": null
+  },
+  {
+    "id": "song-036",
+    "title": "Ei Raat Tomar Amar",
+    "artist": "Hemant Kumar",
+    "category": "Vintage Old Calcutta",
+    "moods": [
+      "Calcutta Evening",
+      "Romantic",
+      "Moonlit"
+    ],
+    "duration": "3:45",
+    "cover": null,
+    "youtubeId": null,
+    "spotifyUrl": null,
+    "appleMusicUrl": null,
+    "previewUrl": null
+  },
+  {
+    "id": "song-037",
+    "title": "Coffee Houser Sei Addata Aaj Aar Nei",
+    "artist": "Manna Dey",
+    "category": "Vintage Old Calcutta",
+    "moods": [
+      "Adda",
+      "Nostalgic",
+      "Rainy Afternoon"
+    ],
+    "duration": "3:45",
+    "cover": null,
+    "youtubeId": null,
+    "spotifyUrl": null,
+    "appleMusicUrl": null,
+    "previewUrl": null
+  },
+  {
+    "id": "song-038",
+    "title": "Mon-Majhi Re",
+    "artist": "R. D. Burman",
+    "category": "Vintage Old Calcutta",
+    "moods": [
+      "Rainy Afternoon",
+      "Nostalgic",
+      "Reflective"
+    ],
+    "duration": "3:45",
+    "cover": null,
+    "youtubeId": null,
+    "spotifyUrl": null,
+    "appleMusicUrl": null,
+    "previewUrl": null
+  },
+  {
+    "id": "song-039",
+    "title": "Nayan Sarasi Keno Bhoreche Jaale",
+    "artist": "Kishore Kumar",
+    "category": "Vintage Old Calcutta",
+    "moods": [
+      "Romantic",
+      "Vintage",
+      "Reflective"
+    ],
+    "duration": "3:45",
+    "cover": null,
+    "youtubeId": null,
+    "spotifyUrl": null,
+    "appleMusicUrl": null,
+    "previewUrl": null
+  },
+  {
+    "id": "song-040",
+    "title": "Ei Path Jodi Na Shes Hoy",
+    "artist": "Sandhya Mukherjee",
+    "category": "Vintage Old Calcutta",
+    "moods": [
+      "Calcutta Evening",
+      "Romantic",
+      "Nostalgic"
+    ],
+    "duration": "3:45",
+    "cover": null,
+    "youtubeId": null,
+    "spotifyUrl": null,
+    "appleMusicUrl": null,
+    "previewUrl": null
+  },
+  {
+    "id": "song-041",
+    "title": "O Amar Mon Jamunar Ange Ange",
+    "artist": "Manna Dey",
+    "category": "Vintage Old Calcutta",
+    "moods": [
+      "Vintage",
+      "Romantic",
+      "Warm"
+    ],
+    "duration": "3:45",
+    "cover": null,
+    "youtubeId": null,
+    "spotifyUrl": null,
+    "appleMusicUrl": null,
+    "previewUrl": null
+  },
+  {
+    "id": "song-042",
+    "title": "Gunjane Dole Je Bhramar",
+    "artist": "Asha Bhosle",
+    "category": "Vintage Old Calcutta",
+    "moods": [
+      "Vintage",
+      "Romantic",
+      "Joyful"
+    ],
+    "duration": "3:45",
+    "cover": null,
+    "youtubeId": null,
+    "spotifyUrl": null,
+    "appleMusicUrl": null,
+    "previewUrl": null
+  },
+  {
+    "id": "song-043",
+    "title": "Tumi Je Amar",
+    "artist": "Geeta Dutt",
+    "category": "Vintage Old Calcutta",
+    "moods": [
+      "Vintage",
+      "Romantic",
+      "Moonlit"
+    ],
+    "duration": "3:45",
+    "cover": null,
+    "youtubeId": null,
+    "spotifyUrl": null,
+    "appleMusicUrl": null,
+    "previewUrl": null
+  },
+  {
+    "id": "song-044",
+    "title": "Aamar Bhalobasar Rajprasade",
+    "artist": "Manna Dey",
+    "category": "Vintage Old Calcutta",
+    "moods": [
+      "Vintage",
+      "Romantic",
+      "Warm"
+    ],
+    "duration": "3:45",
+    "cover": null,
+    "youtubeId": null,
+    "spotifyUrl": null,
+    "appleMusicUrl": null,
+    "previewUrl": null
+  },
+  {
+    "id": "song-045",
+    "title": "Tora Je Ja Bolish",
+    "artist": "Debabrata Biswas",
+    "category": "Vintage Old Calcutta",
+    "moods": [
+      "Vintage",
+      "Adda",
+      "Reflective"
+    ],
+    "duration": "3:45",
+    "cover": null,
+    "youtubeId": null,
+    "spotifyUrl": null,
+    "appleMusicUrl": null,
+    "previewUrl": null
+  },
+  {
+    "id": "song-046",
+    "title": "Ek Tanete Jemon Temon",
+    "artist": "Kishore Kumar",
+    "category": "Vintage Old Calcutta",
+    "moods": [
+      "Vintage",
+      "Joyful",
+      "Adda"
+    ],
+    "duration": "3:45",
+    "cover": null,
+    "youtubeId": null,
+    "spotifyUrl": null,
+    "appleMusicUrl": null,
+    "previewUrl": null
+  },
+  {
+    "id": "song-047",
+    "title": "Amar Deep Nebhano Raat",
+    "artist": "Kishore Kumar",
+    "category": "Vintage Old Calcutta",
+    "moods": [
+      "Moonlit",
+      "Reflective",
+      "Vintage"
+    ],
+    "duration": "3:45",
+    "cover": null,
+    "youtubeId": null,
+    "spotifyUrl": null,
+    "appleMusicUrl": null,
+    "previewUrl": null
+  },
+  {
+    "id": "song-048",
+    "title": "Jani Tomar Premer Jogyo Ami To Noi",
+    "artist": "Manna Dey",
+    "category": "Vintage Old Calcutta",
+    "moods": [
+      "Romantic",
+      "Reflective",
+      "Vintage"
+    ],
+    "duration": "3:45",
+    "cover": null,
+    "youtubeId": null,
+    "spotifyUrl": null,
+    "appleMusicUrl": null,
+    "previewUrl": null
+  },
+  {
+    "id": "song-049",
+    "title": "Tomay Porechhe Mone",
+    "artist": "Kishore Kumar",
+    "category": "Vintage Old Calcutta",
+    "moods": [
+      "Romantic",
+      "Nostalgic",
+      "Rainy Afternoon"
+    ],
+    "duration": "3:45",
+    "cover": null,
+    "youtubeId": null,
+    "spotifyUrl": null,
+    "appleMusicUrl": null,
+    "previewUrl": null
+  },
+  {
+    "id": "song-050",
+    "title": "Ek Palaker Ektu Dekha",
+    "artist": "Kishore Kumar",
+    "category": "Vintage Old Calcutta",
+    "moods": [
+      "Romantic",
+      "Vintage",
+      "Warm"
+    ],
+    "duration": "3:45",
+    "cover": null,
+    "youtubeId": null,
+    "spotifyUrl": null,
+    "appleMusicUrl": null,
+    "previewUrl": null
+  },
+  {
+    "id": "song-051",
+    "title": "Katobar Bhebechhinu Apona Bhuliya",
+    "artist": "Sagar Sen",
+    "category": "Vintage Old Calcutta",
+    "moods": [
+      "Rabindric",
+      "Reflective",
+      "Rainy Afternoon"
+    ],
+    "duration": "3:45",
+    "cover": null,
+    "youtubeId": null,
+    "spotifyUrl": null,
+    "appleMusicUrl": null,
+    "previewUrl": null
+  },
+  {
+    "id": "song-052",
+    "title": "Bhuter Raja Dilo Bor",
+    "artist": "Anup Ghoshal",
+    "category": "Vintage Old Calcutta",
+    "moods": [
+      "Playful",
+      "Vintage",
+      "Joyful"
+    ],
+    "duration": "3:45",
+    "cover": null,
+    "youtubeId": null,
+    "spotifyUrl": null,
+    "appleMusicUrl": null,
+    "previewUrl": null
+  }
+]

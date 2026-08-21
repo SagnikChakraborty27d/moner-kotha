@@ -1,5 +1,5 @@
 'use client';
-import {useMemo,useState,useEffect} from 'react';
+import {useMemo,useState} from 'react';
 import {AnimatePresence,motion} from 'framer-motion';
 import {Heart, Instagram, Linkedin, Music2, Play, Pause, Search, SkipBack, SkipForward, Users, X, ListMusic} from 'lucide-react';
 import songs from '../data/songs.json';
@@ -23,16 +23,6 @@ const collections=[['Modern Pujo Hits', 'Retro']];
 
 export default function Home(){
  const [q,setQ]=useState(''); const [mood,setMood]=useState(''); const [active,setActive]=useState<Song|null>(null); const [wish,setWish]=useState<string[]>([]); const [showContrib,setShowContrib]=useState(false);
- const [pujoDays, setPujoDays] = useState(55);
-
- useEffect(() => {
-   const pujoDate = new Date('2026-10-16T00:00:00');
-   const today = new Date();
-   const diffTime = pujoDate.getTime() - today.getTime();
-   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-   if (diffDays > 0) setPujoDays(diffDays);
- }, []);
-
  const filtered=useMemo(()=>songs.filter(s=>((s.title+' '+s.artist+' '+s.category).toLowerCase().includes(q.toLowerCase())) && (!mood || s.moods?.includes(mood))).slice(0,12),[q,mood]);
  const play=(s:Song)=>setActive(s); const toggleWish=(id:string)=>setWish(w=>w.includes(id)?w.filter(x=>x!==id):[...w,id]);
  
@@ -52,14 +42,7 @@ export default function Home(){
    <div className="relative z-10 mx-auto max-w-6xl pt-28 md:pt-36">
     <p className="bengali text-xl text-[#f2ca55] md:text-2xl">শহরটা গান গায় যখন</p>
     <h1 className="section-title mt-3 max-w-3xl text-6xl leading-[.95] md:text-8xl">Moner Kotha</h1>
-    
-    {/* Pretty Styled Pujo Countdown Header */}
-    <div className="mt-4 flex flex-col gap-1">
-      <span className="bengali text-3xl md:text-4xl font-bold text-[#f2ca55] tracking-wide drop-shadow-md">পুজো আসছে</span>
-      <span className="text-xs md:text-sm tracking-[0.25em] text-white/80 uppercase font-medium">{pujoDays} days until Durga Pujo</span>
-    </div>
-
-    <p className="bengali mt-6 max-w-xl text-xl leading-9 text-white/70">পুজোর আলো থেকে পুরনো কলকাতার গলি—তোমার মনের মতো গান, এক জায়গায়।</p>
+    <p className="bengali mt-7 max-w-xl text-xl leading-9 text-white/70">পুজোর আলো থেকে পুরনো কলকাতার গলি—তোমার মনের মতো গান, এক জায়গায়।</p>
     <div className="mt-8 flex flex-wrap gap-3">
      <a href="#music" className="rounded-full bg-[#f2ca55] px-6 py-3 font-semibold text-[#26160f]">শুরু করি <Play size={16} className="inline ml-1" fill="currentColor"/></a>
      <button onClick={()=>setMood('মহালয়া ভোর')} className="glass rounded-full px-6 py-3">মহালয়া ভোর</button>
@@ -150,4 +133,4 @@ export default function Home(){
 
   {active&&<><audio src={active.previewUrl} autoPlay className="hidden" /><div className="fixed bottom-0 left-0 right-0 z-40 border-t border-white/10 bg-[#1b1417]/90 px-4 py-3 backdrop-blur-2xl"><div className="mx-auto flex max-w-6xl items-center gap-3"><div className="hidden h-12 w-12 place-items-center rounded-xl bg-[#7c3828] sm:grid"><Music2 size={20}/></div><div className="min-w-0 flex-1"><div className="truncate font-semibold">{active.title}</div><div className="truncate text-xs text-white/45">{active.artist}</div></div><button className="hidden rounded-full p-2 text-white/60 sm:block"><SkipBack size={18}/></button><button onClick={()=>setActive(null)} className="grid h-11 w-11 place-items-center rounded-full bg-[#f2ca55] text-[#26160f]"><Pause size={18} fill="currentColor"/></button><button className="hidden rounded-full p-2 text-white/60 sm:block"><SkipForward size={18}/></button><div className="hidden items-center gap-2 text-xs text-white/40 md:flex"><ListMusic size={17}/> {wish.length} saved</div></div></div></>}
  </main>
-  }
+             }

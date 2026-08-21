@@ -18,13 +18,11 @@ export type Song = {
   previewUrl: string;
 };
 
-const moods=[['🔥','পুজোর সকাল'],['🌧️','Rainy Day']];
-const collections=[['Modern Pujo Hits', 'Retro']];
+const tabs = ['DURGA PUJA', 'MAHALAYA', 'KOLKATA'];
 
 export default function Home(){
- const [q,setQ]=useState(''); const [mood,setMood]=useState(''); const [active,setActive]=useState<Song|null>(null); const [wish,setWish]=useState<string[]>([]); const [showContrib,setShowContrib]=useState(false); const [showChai,setShowChai]=useState(false);
- const filtered=useMemo(()=>songs.filter(s=>((s.title+' '+s.artist+' '+s.category).toLowerCase().includes(q.toLowerCase())) && (!mood || s.moods?.includes(mood))).slice(0,12),[q,mood]);
- const play=(s:Song)=>setActive(s); const toggleWish=(id:string)=>setWish(w=>w.includes(id)?w.filter(x=>x!==id):[...w,id]);
+ const [active,setActive]=useState<Song|null>(null); const [showContrib,setShowContrib]=useState(false); const [showChai,setShowChai]=useState(false); const [showPlaylist,setShowPlaylist]=useState(false); const [activeTab,setActiveTab]=useState('DURGA PUJA');
+ const play=(s:Song)=>setActive(s);
  
  return <main className="min-h-screen pb-40" style={{ backgroundImage: "linear-gradient(to bottom, rgba(9, 8, 12, 0.2), rgba(9, 8, 12, 0.8)), url('https://raw.githubusercontent.com/SagnikChakraborty27d/moner-kotha/main/de566c7b-0327-4e8d-b4bb-d66d29b5b29a.png')", backgroundSize: "cover", backgroundPosition: "bottom center", backgroundAttachment: "fixed" }}>
   
@@ -36,7 +34,7 @@ export default function Home(){
     </div>
     <div className="flex items-center gap-2">
       <div className="glass rounded-full flex items-center p-1 px-2 gap-1">
-         <button className="p-2 hover:bg-white/10 rounded-full transition"><Play size={14} className="text-white/80"/></button>
+         <button onClick={()=>setShowPlaylist(true)} className="p-2 hover:bg-white/10 rounded-full transition"><Play size={14} className="text-white/80"/></button>
          <a href="https://open.spotify.com/playlist/51quSl18YnTjrII2uYmyYT" target="_blank" className="p-2 hover:bg-white/10 rounded-full transition"><Music2 size={14} className="text-white/80"/></a>
       </div>
       <button onClick={()=>setShowContrib(true)} className="glass p-3 rounded-full hover:bg-white/10 transition"><Users size={16} className="text-white/80"/></button>
@@ -45,33 +43,57 @@ export default function Home(){
   </div>
 
   {/* Hero Pujo Asche Section */}
-  <section className="relative z-10 pt-32 pb-20 flex flex-col items-center text-center px-4">
+  <section className="relative z-10 pt-32 pb-10 flex flex-col items-center text-center px-4">
      <h1 className="bengali text-6xl md:text-8xl font-bold text-[#f2ca55] drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]">পুজো আসছে</h1>
      <p className="mt-4 text-sm tracking-[0.2em] text-white/90 font-medium drop-shadow-md">55 days until Durga Pujo</p>
   </section>
 
-  {/* Music List */}
-  <section id="music" className="relative z-10 mx-auto max-w-2xl px-5">
-   <div className="glass rounded-3xl p-4 flex flex-col gap-2">
-     <div className="px-2 pb-2 flex justify-between items-center border-b border-white/10 mb-2">
-        <span className="text-xs tracking-widest text-white/50 uppercase">Playlist</span>
-     </div>
-     {filtered.map((s,i)=><motion.div initial={{opacity:0,y:8}} animate={{opacity:1,y:0}} transition={{delay:i*.02}} key={s.id} className="flex items-center gap-4 rounded-2xl p-2 hover:bg-white/10 transition cursor-pointer" onClick={()=>play(s)}>
-       <span className="text-[#f2ca55] text-sm font-medium w-6 text-center">{(i+1).toString().padStart(2, '0')}</span>
-       <img src={s.cover} alt="cover" className="h-12 w-12 rounded-md object-cover" />
-       <div className="min-w-0 flex-1">
-        <div className="truncate font-semibold text-[#f2ca55]">{s.title}</div>
-        <div className="truncate text-xs text-white/60">{s.artist}</div>
-       </div>
-       <span className="text-xs text-white/40">{s.duration}</span>
-      </motion.div>)}
-   </div>
+  {/* Main Screen Playlist Trigger */}
+  <section className="relative z-10 mx-auto max-w-2xl px-5 flex justify-center mt-8">
+    <button onClick={()=>setShowPlaylist(true)} className="glass bg-[#2a2225]/80 hover:bg-[#2a2225] border border-white/10 rounded-full px-6 py-3 flex items-center gap-3 text-xs tracking-widest text-white/90 font-semibold uppercase shadow-xl transition-all">
+      <ListMusic size={16} className="text-[#f2ca55]" /> Browse Playlists <ChevronDown size={14} className="text-white/50"/>
+    </button>
   </section>
 
   {/* Modals & Popups */}
   <AnimatePresence>
+    {/* The Devipaksha Playlist Drawer */}
+    {showPlaylist&&<motion.div initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} className="fixed inset-0 z-[70] bg-black/60 backdrop-blur-sm flex flex-col justify-end sm:grid sm:place-items-center">
+      <motion.div initial={{y:"100%"}} animate={{y:0}} exit={{y:"100%"}} transition={{type:"spring", damping:25, stiffness:200}} className="w-full sm:max-w-md bg-[#1a1518]/95 border-t border-white/10 rounded-t-[34px] sm:rounded-[34px] p-6 h-[85vh] sm:h-[650px] flex flex-col shadow-[0_-10px_40px_rgba(0,0,0,0.5)]">
+        
+        <div className="flex justify-between items-center mb-6">
+          <span className="text-[11px] tracking-[0.3em] text-white/60 font-bold uppercase">Playlists</span>
+          <button onClick={()=>setShowPlaylist(false)} className="text-white/50 hover:text-white p-2 -mr-2"><X size={18}/></button>
+        </div>
+        
+        <div className="flex gap-6 border-b border-white/10 pb-4 mb-4 overflow-x-auto">
+           {tabs.map(tab => (
+             <button key={tab} onClick={()=>setActiveTab(tab)} className={`text-[11px] font-bold tracking-[0.15em] uppercase whitespace-nowrap transition-all duration-300 ${activeTab===tab ? 'text-white' : 'text-white/40 hover:text-white/70'}`}>
+               {tab}
+             </button>
+           ))}
+        </div>
+        
+        <p className="text-xs text-white/40 mb-5 font-medium">The main curated {activeTab.toLowerCase()} playlist.</p>
+        
+        <div className="flex-1 overflow-y-auto pb-20 flex flex-col gap-1 pr-2">
+           {songs.map((s, i) => (
+              <div key={s.id} onClick={()=>{play(s); setShowPlaylist(false);}} className={`flex items-center gap-4 rounded-2xl p-2 cursor-pointer transition-all ${active?.id === s.id ? 'bg-white/10' : 'hover:bg-white/5'}`}>
+                 <span className={`text-sm font-medium w-6 text-center ${active?.id === s.id ? 'text-[#f2ca55]' : 'text-white/40'}`}>{(i+1).toString().padStart(2, '0')}</span>
+                 <img src={s.cover} className="w-[46px] h-[46px] rounded-[10px] object-cover shadow-md" />
+                 <div className="flex-1 min-w-0">
+                   <div className={`truncate font-semibold text-sm ${active?.id === s.id ? 'text-[#f2ca55]' : 'text-white/90'}`}>{s.title}</div>
+                   <div className="truncate text-xs text-white/50 mt-0.5">{s.artist}</div>
+                 </div>
+                 <span className="text-[11px] text-white/30">{s.duration}</span>
+              </div>
+           ))}
+        </div>
+      </motion.div>
+    </motion.div>}
+
     {/* Chai Modal */}
-    {showChai&&<motion.div initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} className="fixed inset-0 z-[60] bg-black/80 backdrop-blur-md grid place-items-center p-5">
+    {showChai&&<motion.div initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} className="fixed inset-0 z-[80] bg-black/80 backdrop-blur-md grid place-items-center p-5">
       <motion.div initial={{y:30,scale:.97}} animate={{y:0,scale:1}} exit={{y:30,scale:.97}} className="glass relative w-full max-w-sm rounded-[34px] p-8 text-center">
         <button onClick={()=>setShowChai(false)} className="absolute right-5 top-5 rounded-full bg-white/5 p-2"><X size={18}/></button>
         <div className="text-xs uppercase tracking-[0.3em] text-white/50 font-semibold mt-2">Buy us a Chai</div>
@@ -88,7 +110,7 @@ export default function Home(){
     </motion.div>}
 
     {/* Contributors Modal */}
-    {showContrib&&<motion.div initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} className="fixed inset-0 z-[60] bg-black/80 backdrop-blur-md grid place-items-center p-5">
+    {showContrib&&<motion.div initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} className="fixed inset-0 z-[80] bg-black/80 backdrop-blur-md grid place-items-center p-5">
       <motion.div initial={{y:30,scale:.97}} animate={{y:0,scale:1}} exit={{y:30,scale:.97}} className="glass relative w-full max-w-sm rounded-[34px] p-8 text-center">
         <button onClick={()=>setShowContrib(false)} className="absolute right-5 top-5 rounded-full bg-white/5 p-2"><X size={18}/></button>
         <div className="text-xs uppercase tracking-[.35em] text-white/45 mt-2">Made with bhalobasha by</div>
@@ -103,13 +125,13 @@ export default function Home(){
 
   {/* Custom Floating Audio Player */}
   {active&&<><audio src={active.previewUrl} autoPlay className="hidden" />
-    <motion.div initial={{y:100}} animate={{y:0}} className="fixed bottom-4 left-4 right-4 z-50">
+    <motion.div initial={{y:100}} animate={{y:0}} className="fixed bottom-4 left-4 right-4 z-[60]">
       <div className="glass rounded-[32px] p-5 shadow-2xl flex flex-col gap-4 border border-white/10 bg-[#3a3033]/60 backdrop-blur-2xl">
         
-        {/* Top Dropdown Button */}
+        {/* Top Dropdown Button - Now opens the Playlist UI! */}
         <div className="flex justify-center -mt-8">
-           <button className="glass bg-[#2a2225] border border-white/10 rounded-full px-5 py-1.5 flex items-center gap-2 text-[10px] tracking-widest text-white/70 font-semibold uppercase">
-             <ListMusic size={12}/> {active.category} <ChevronDown size={12}/>
+           <button onClick={()=>setShowPlaylist(true)} className="glass bg-[#2a2225] hover:bg-[#3a3033] transition-colors border border-white/10 rounded-full px-5 py-1.5 flex items-center gap-2 text-[10px] tracking-widest text-white/70 font-semibold uppercase shadow-lg cursor-pointer">
+             <ListMusic size={12}/> PLAYLIST <ChevronDown size={12}/>
            </button>
         </div>
 
@@ -120,7 +142,7 @@ export default function Home(){
               <div className="font-bold text-white truncate text-lg">{active.title}</div>
               <div className="text-sm text-white/60 truncate">{active.artist}</div>
               
-              {/* Fake Progress Bar for UI */}
+              {/* Fake Progress Bar */}
               <div className="w-full bg-white/10 h-1 mt-3 rounded-full overflow-hidden">
                 <div className="bg-white/80 h-1 w-1/3 rounded-full animate-pulse"></div>
               </div>
@@ -144,4 +166,4 @@ export default function Home(){
     </motion.div>
   </>}
  </main>
-}
+   }

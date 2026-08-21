@@ -24,13 +24,16 @@ const tabs = ['DURGA PUJA', 'MAHALAYA', 'KOLKATA'];
 export default function Home(){
  const [q,setQ]=useState(''); const [mood,setMood]=useState(''); const [active,setActive]=useState<Song|null>(null); const [showContrib,setShowContrib]=useState(false); const [showChai,setShowChai]=useState(false); const [showPlaylist,setShowPlaylist]=useState(false); const [activeTab,setActiveTab]=useState('DURGA PUJA');
  const [pujoDays, setPujoDays] = useState(55);
+ const [showSplash, setShowSplash] = useState(true);
 
  useEffect(() => {
+   const timer = setTimeout(() => setShowSplash(false), 2500);
    const pujoDate = new Date('2026-10-16T00:00:00');
    const today = new Date();
    const diffTime = pujoDate.getTime() - today.getTime();
    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
    if (diffDays > 0) setPujoDays(diffDays);
+   return () => clearTimeout(timer);
  }, []);
 
  const filtered=useMemo(()=>songs.filter(s=>((s.title+' '+s.artist+' '+s.category).toLowerCase().includes(q.toLowerCase())) && (!mood || s.moods?.includes(mood))).slice(0,12),[q,mood]);
@@ -38,7 +41,18 @@ export default function Home(){
  
  return <main className="min-h-screen pb-40" style={{ backgroundImage: "linear-gradient(to bottom, rgba(9, 8, 12, 0.2), rgba(9, 8, 12, 0.8)), url('https://raw.githubusercontent.com/SagnikChakraborty27d/moner-kotha/main/de566c7b-0327-4e8d-b4bb-d66d29b5b29a.png')", backgroundSize: "cover", backgroundPosition: "bottom center", backgroundAttachment: "fixed" }}>
   
-  {/* Top Navigation Bar with Online Badge, Spotify Logo, Contributors & Chai QR */}
+  {/* Cinematic Intro Splash Screen */}
+  <AnimatePresence>
+    {showSplash && (
+      <motion.div initial={{opacity:1}} exit={{opacity:0}} transition={{duration:0.8}} className="fixed inset-0 z-[100] bg-[#09080c] flex flex-col items-center justify-center p-6 text-center">
+        <motion.img initial={{scale:0.8, opacity:0}} animate={{scale:1, opacity:1}} transition={{duration:1}} src="/231fb176-3eb3-4c0e-88a3-13abfe31ba2b.png" alt="Moner Kotha Logo" className="w-36 h-36 md:w-48 md:h-48 rounded-full object-cover shadow-[0_0_30px_rgba(242,202,85,0.3)] border-2 border-[#f2ca55]/40 mb-6" />
+        <motion.h1 initial={{y:20, opacity:0}} animate={{y:0, opacity:1}} transition={{delay:0.3, duration:0.8}} className="bengali text-3xl md:text-4xl font-bold text-[#f2ca55] tracking-wide">শহরটা গান গায় যখন</motion.h1>
+        <motion.p initial={{y:20, opacity:0}} animate={{y:0, opacity:1}} transition={{delay:0.5, duration:0.8}} className="mt-2 text-xs md:text-sm tracking-[0.3em] text-white/60 uppercase font-medium">Entering the lanes of nostalgia...</motion.p>
+      </motion.div>
+    )}
+  </AnimatePresence>
+
+  {/* Top Navigation Bar */}
   <div className="fixed top-0 left-0 right-0 p-4 flex justify-between items-center z-40">
     <div className="glass rounded-full px-4 py-2 flex items-center gap-2">
       <div className="w-2 h-2 bg-[#00ff88] rounded-full animate-pulse shadow-[0_0_8px_#00ff88]"/>
@@ -115,7 +129,6 @@ export default function Home(){
 
   {/* Modals & Popups */}
   <AnimatePresence>
-    {/* Devipaksha Playlist Drawer */}
     {showPlaylist&&<motion.div initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} className="fixed inset-0 z-[70] bg-black/60 backdrop-blur-sm flex flex-col justify-end sm:grid sm:place-items-center">
       <motion.div initial={{y:"100%"}} animate={{y:0}} exit={{y:"100%"}} transition={{type:"spring", damping:25, stiffness:200}} className="w-full sm:max-w-md bg-[#1a1518]/95 border-t border-white/10 rounded-t-[34px] sm:rounded-[34px] p-6 h-[85vh] sm:h-[650px] flex flex-col shadow-[0_-10px_40px_rgba(0,0,0,0.5)]">
         
@@ -150,7 +163,6 @@ export default function Home(){
       </motion.div>
     </motion.div>}
 
-    {/* Chai Modal with Real UPI QR */}
     {showChai&&<motion.div initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} className="fixed inset-0 z-[80] bg-black/80 backdrop-blur-md grid place-items-center p-5">
       <motion.div initial={{y:30,scale:.97}} animate={{y:0,scale:1}} exit={{y:30,scale:.97}} className="glass relative w-full max-w-sm rounded-[34px] p-8 text-center">
         <button onClick={()=>setShowChai(false)} className="absolute right-5 top-5 rounded-full bg-white/5 p-2"><X size={18}/></button>
@@ -167,7 +179,6 @@ export default function Home(){
       </motion.div>
     </motion.div>}
 
-    {/* Contributors Modal */}
     {showContrib&&<motion.div initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} className="fixed inset-0 z-[80] bg-black/80 backdrop-blur-md grid place-items-center p-5">
       <motion.div initial={{y:30,scale:.97}} animate={{y:0,scale:1}} exit={{y:30,scale:.97}} className="glass relative w-full max-w-sm rounded-[34px] p-8 text-center">
         <button onClick={()=>setShowContrib(false)} className="absolute right-5 top-5 rounded-full bg-white/5 p-2"><X size={18}/></button>
@@ -181,19 +192,16 @@ export default function Home(){
     </motion.div>}
   </AnimatePresence>
 
-  {/* Custom Floating Audio Player */}
   {active&&<><audio src={active.previewUrl} autoPlay className="hidden" />
     <motion.div initial={{y:100}} animate={{y:0}} className="fixed bottom-4 left-4 right-4 z-[60]">
       <div className="glass rounded-[32px] p-5 shadow-2xl flex flex-col gap-4 border border-white/10 bg-[#3a3033]/60 backdrop-blur-2xl">
         
-        {/* Top Dropdown Button */}
         <div className="flex justify-center -mt-8">
            <button onClick={()=>setShowPlaylist(true)} className="glass bg-[#2a2225] hover:bg-[#3a3033] transition-colors border border-white/10 rounded-full px-5 py-1.5 flex items-center gap-2 text-[10px] tracking-widest text-white/70 font-semibold uppercase shadow-lg cursor-pointer">
              <ListMusic size={12}/> PLAYLIST <ChevronDown size={12}/>
            </button>
         </div>
 
-        {/* Main Audio Controls */}
         <div className="flex items-center gap-4">
            <img src={active.cover} className="w-[72px] h-[72px] rounded-2xl object-cover shadow-lg" />
            <div className="flex-1 min-w-0">
@@ -213,7 +221,6 @@ export default function Home(){
            </div>
         </div>
 
-        {/* Bottom Actions Row */}
         <div className="flex justify-between items-center pt-3 border-t border-white/10 text-xs text-white/50 px-2 font-medium">
            <button className="flex items-center gap-2 hover:text-white transition"><Shuffle size={14}/> Shuffle</button>
            <button className="flex items-center gap-2 hover:text-white transition"><Repeat size={14}/> Repeat</button>
@@ -223,4 +230,4 @@ export default function Home(){
     </motion.div>
   </>}
  </main>
-   }
+        }

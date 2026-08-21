@@ -7,6 +7,15 @@ import songs from '../data/songs.json';
 export type Song = {
   id: string;
   title: string;
+  artist: string;
+  category: string;
+  moods: string[];
+  duration: string;
+  cover: string;
+  youtubeId: string;
+  spotifyUrl: string;
+  appleMusicUrl: string;
+  previewUrl: string;
 };
 
 const moods=[['🔥','পুজোর সকাল'],['🌧️','Rainy Day']]; // Keep your original array values here

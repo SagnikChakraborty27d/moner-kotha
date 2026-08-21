@@ -4,9 +4,14 @@ import {AnimatePresence,motion} from 'framer-motion';
 import {Heart, Instagram, Linkedin, Music2, Play, Pause, Search, SkipBack, SkipForward, Users, X, ListMusic} from 'lucide-react';
 import songs from '../data/songs.json';
 
-type Song=typeof songs[number];
-const moods=[['🪔','পুজোর সকাল'],['🌧️','বৃষ্টিভেজা দুপুর'],['☕','কলকাতার আড্ডা'],['🌆','কলকাতার সন্ধ্যা'],['🌙','রাত জাগা'],['🌺','মহালয়া ভোর']];
-const collections=[['Modern Pujo Hits','নতুন প্রজন্মের পুজোর উচ্ছ্বাস'],['Nostalgic Agomoni & Mahalaya','মহালয়ার ভোর, আগমনী আর স্মৃতির গান'],['Vintage Old Calcutta','পুরনো কলকাতার প্রেম, আড্ডা আর শহুরে নস্টালজিয়া']];
+export type Song = {
+  id: string;
+  title: string;
+};
+
+const moods=[['🔥','পুজোর সকাল'],['🌧️','Rainy Day']]; // Keep your original array values here
+const collections=[['Modern Pujo Hits', 'Retro']]; // Keep your original array values here
+
 export default function Home(){
  const [q,setQ]=useState(''); const [mood,setMood]=useState(''); const [active,setActive]=useState<Song|null>(null); const [wish,setWish]=useState<string[]>([]); const [showContrib,setShowContrib]=useState(false);
  const filtered=useMemo(()=>songs.filter(s=>((s.title+' '+s.artist+' '+s.category).toLowerCase().includes(q.toLowerCase())) && (!mood || s.moods?.includes(mood))).slice(0,12),[q,mood]);

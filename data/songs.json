@@ -1,17 +1,28 @@
-{
-  "id": "song-001",
-  "title": "Menoka Mathaye Dilo",
-  "artist": "Bhoomi",
-  "category": "Modern Pujo Hits",
-  "moods": [
-    "Pujo Morning",
-    "Festive",
-    "Joyful"
-  ],
-  "duration": "3:45",
-  "cover": "",
-  "youtubeId": "",
-  "spotifyUrl": "...",
-  "appleMusicUrl": "...",
-  "previewUrl": ""
-}
+[
+  {
+    "id": "1",
+    "title": "Song One",
+    "artist": "Arijit Singh",
+    "category": "Modern Pujo Hits",
+    "moods": ["পুজোর সকাল"],
+    "duration": "4:30",
+    "cover": "cover-url",
+    "youtubeId": "id",
+    "spotifyUrl": "url",
+    "appleMusicUrl": "url",
+    "previewUrl": "url"
+  },
+  {
+    "id": "2",
+    "title": "Song Two",
+    "artist": "Shreya Ghoshal",
+    "category": "Retro",
+    "moods": ["Rainy Day"],
+    "duration": "3:45",
+    "cover": "cover-url",
+    "youtubeId": "id",
+    "spotifyUrl": "url",
+    "appleMusicUrl": "url",
+    "previewUrl": "url"
+  }
+]

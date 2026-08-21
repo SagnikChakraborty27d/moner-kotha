@@ -25,7 +25,7 @@ export default function Home(){
  const [q,setQ]=useState(''); const [mood,setMood]=useState(''); const [active,setActive]=useState<Song|null>(null); const [wish,setWish]=useState<string[]>([]); const [showContrib,setShowContrib]=useState(false);
  const filtered=useMemo(()=>songs.filter(s=>((s.title+' '+s.artist+' '+s.category).toLowerCase().includes(q.toLowerCase())) && (!mood || s.moods?.includes(mood))).slice(0,12),[q,mood]);
  const play=(s:Song)=>setActive(s); const toggleWish=(id:string)=>setWish(w=>w.includes(id)?w.filter(x=>x!==id):[...w,id]);
- return <main className="min-h-screen bg-[#09080c] pb-28">
+ <main className="min-h-screen pb-28" style={{ backgroundImage: "linear-gradient(to bottom, rgba(9, 8, 12, 0.4), rgba(9, 8, 12, 0.8)), url('https://raw.githubusercontent.com/SagnikChakraborty27d/moner-kotha/main/de566c7b-0327-4e8d-b4bb-d66d29b5b29a.png')", backgroundSize: "cover", backgroundPosition: "center", backgroundAttachment: "fixed" }}>
   <section className="hero min-h-[690px] px-5 pt-8 md:px-12">
    <nav className="relative z-10 mx-auto flex max-w-6xl items-center justify-between"><div><div className="bengali text-2xl font-bold text-[#f2ca55]">মনের কথা</div><div className="text-xs uppercase tracking-[.3em] text-white/50">songs • স্মৃতি • কলকাতা</div></div><div className="flex items-center gap-2"><a className="glass rounded-full p-3" href="#music"><Music2 size={18}/></a><button onClick={()=>setShowContrib(true)} className="glass rounded-full px-4 py-2 text-sm"><Users size={16} className="inline mr-2"/>Contributors</button></div></nav>
    {[['15%', '21%'],['28%','30%'],['44%','17%'],['62%','27%'],['78%','20%'],['88%','35%']].map((p,i)=><span key={i} className="lamp" style={{left:p[0],top:p[1]}}/>)}

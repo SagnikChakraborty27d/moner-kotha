@@ -7,6 +7,9 @@ export const metadata = {
     icon: '/07929bcb-b11c-4334-a2d5-b45c967a34c1.png',
     apple: '/07929bcb-b11c-4334-a2d5-b45c967a34c1.png',
   },
+  verification: {
+    google: "4fM9V9_sQZWPyOUAGQX57Xq38VANXblwZjdDyIOBlQ8",
+  },
 };
 
 export default function RootLayout({

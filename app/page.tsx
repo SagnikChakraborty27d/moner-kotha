@@ -1,192 +1,246 @@
-"use client";
+'use client';
+import {useMemo,useState,useEffect} from 'react';
+import {AnimatePresence,motion} from 'framer-motion';
+import {Heart, Instagram, Linkedin, Music2, Play, Pause, Search, SkipBack, SkipForward, Users, X, ListMusic, Coffee, Shuffle, Repeat, ChevronDown, Apple} from 'lucide-react';
+import songs from '../data/songs.json';
 
-import React, { useState } from "react";
-import ReactPlayer from "react-player/youtube";
-import { motion, AnimatePresence } from "framer-motion";
-import { Apple, Download, Headphones, Search, CloudRain, Coffee, Play, User, Menu } from "lucide-react";
+export type Song = {
+  id: string;
+  title: string;
+  artist: string;
+  category: string;
+  moods: string[];
+  duration: string;
+  cover: string;
+  youtubeId: string;
+  spotifyUrl: string;
+  appleMusicUrl: string;
+  previewUrl: string;
+};
 
-// --- THE DATA ---
-const PUJO_HITS_COLLECTION = [
-  {
-    id: "01",
-    title: "Dugga Elo",
-    artist: "Monali Thakur",
-    duration: "2:27",
-    metadata: "Lyricist: Traditional | Composer: Kaushik-Guddu",
-    youtubeId: "SFJeglBF5cg", 
-    links: { 
-      apple: "music://apple.com/", 
-      spotify: "spotify:track:",   
-    }
-  }
-];
+const moods=[['🔥','পুজোর সকাল'],['🌧️','Rainy Day'],['☕','কলকাতার সন্ধ্যা']];
+const tabs = ['DURGA PUJA', 'MAHALAYA', 'KOLKATA'];
 
-export default function App() {
-  const [activeSong, setActiveSong] = useState(PUJO_HITS_COLLECTION[0]);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [activeTheme, setActiveTheme] = useState("maaDurga");
+export default function Home(){
+ const [q,setQ]=useState(''); const [mood,setMood]=useState(''); const [active,setActive]=useState<Song|null>(null); const [showContrib,setShowContrib]=useState(false); const [showChai,setShowChai]=useState(false); const [showPlaylist,setShowPlaylist]=useState(false); const [activeTab,setActiveTab]=useState('DURGA PUJA');
+ const [pujoDays, setPujoDays] = useState(55);
+ const [showSplash, setShowSplash] = useState(true);
 
-  // Dynamic Backgrounds for future swiping expansion
-  const THEMES: Record<string, string> = {
-    maaDurga: "url('/backgrounds/286dd9e4-0161-4bdd-8257-c9e3a33f9729.png')",
-    // You can add more backgrounds here later for the swipe effect
-  };
+ useEffect(() => {
+   const timer = setTimeout(() => setShowSplash(false), 2500);
+   const pujoDate = new Date('2026-10-16T00:00:00');
+   const today = new Date();
+   const diffTime = pujoDate.getTime() - today.getTime();
+   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+   if (diffDays > 0) setPujoDays(diffDays);
+   return () => clearTimeout(timer);
+ }, []);
 
-  return (
-    <div className="relative w-full h-screen overflow-hidden bg-[#050b14]">
-      
-      {/* 1. DYNAMIC BACKGROUND (Maa Durga) */}
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={activeTheme}
-          initial={{ opacity: 0, scale: 1.05 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 1.2 }}
-          className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-60"
-          style={{ backgroundImage: THEMES[activeTheme] }}
-        />
-      </AnimatePresence>
-      
-      {/* Gradient overlay to make text readable */}
-      <div className="absolute inset-0 z-10 bg-gradient-to-b from-[#050b14]/80 via-transparent to-[#050b14]" />
+ const filtered=useMemo(()=>songs.filter(s=>((s.title+' '+s.artist+' '+s.category).toLowerCase().includes(q.toLowerCase())) && (!mood || s.moods?.includes(mood))).slice(0,12),[q,mood]);
+ const play=(s:Song)=>setActive(s);
+ 
+ return <main className="min-h-screen pb-40" style={{ backgroundImage: "linear-gradient(to bottom, rgba(9, 8, 12, 0.2), rgba(9, 8, 12, 0.8)), url('/backgrounds/286dd9e4-0161-4bdd-8257-c9e3a33f9729.png')", backgroundSize: "cover", backgroundPosition: "bottom center", backgroundAttachment: "fixed" }}>
+  
+  {/* Cinematic Intro Splash Screen */}
+  <AnimatePresence>
+    {showSplash && (
+    <motion.div initial={{opacity:1}} exit={{opacity:0}} transition={{duration:0.8}} className="fixed inset-0 z-[100] bg-[#09080c] flex flex-col items-center justify-center p-6 text-center">
+        <motion.img initial={{scale:0.8, opacity:0}} animate={{scale:1, opacity:1}} transition={{duration:1}} src="https://raw.githubusercontent.com/SagnikChakraborty27d/moner-kotha/main/app/231fb176-3eb3-4c0e-88a3-13abfe31ba2b.png" alt="Moner Kotha Logo" className="w-36 h-36 md:w-48 md:h-48 rounded-full object-cover shadow-[0_0_30px_rgba(242,202,85,0.3)] border-2 border-[#f2ca55]/40 mb-6" />
+        <motion.h1 initial={{y:20, opacity:0}} animate={{y:0, opacity:1}} transition={{delay:0.3, duration:0.8}} className="bengali text-3xl md:text-4xl font-bold text-[#f2ca55] tracking-wide">শহরটা গান গায় যখন</motion.h1>
+        <motion.p initial={{y:20, opacity:0}} animate={{y:0, opacity:1}} transition={{delay:0.5, duration:0.8}} className="mt-2 text-xs md:text-sm tracking-[0.3em] text-white/60 uppercase font-medium">Entering the lanes of nostalgia...</motion.p>
+      </motion.div>
+    )}
+  </AnimatePresence>
 
-      {/* Hidden Audio Engine */}
-      <div className="hidden">
-        <ReactPlayer
-          url={`https://www.youtube.com/watch?v=${activeSong.youtubeId}`}
-          playing={isPlaying}
-          controls={false}
-          width="0" height="0"
-        />
+  {/* Top Navigation Bar */}
+  <div className="fixed top-0 left-0 right-0 p-4 flex justify-between items-center z-40">
+    <div className="glass rounded-full px-4 py-2 flex items-center gap-2">
+      <div className="w-2 h-2 bg-[#00ff88] rounded-full animate-pulse shadow-[0_0_8px_#00ff88]"/>
+      <span className="text-xs font-medium text-white/90">252 online</span>
+    </div>
+    <div className="flex items-center gap-2">
+      <div className="glass rounded-full flex items-center p-1 px-2 gap-1">
+         <button onClick={()=>setShowPlaylist(true)} className="p-2 hover:bg-white/10 rounded-full transition"><Play size={14} className="text-white/80"/></button>
+         
+         <a href="#" target="_blank" className="p-2 hover:bg-white/10 rounded-full transition flex items-center justify-center">
+            <Apple size={14} className="text-white" />
+         </a>
+
+         <a href="https://open.spotify.com/playlist/51quSl18YnTjrII2uYmyYT" target="_blank" className="p-2 hover:bg-white/10 rounded-full transition flex items-center justify-center">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" className="text-[#1DB954]">
+               <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm5.521 17.34c-.24.359-.72.48-1.08.24-2.999-1.8-6.78-2.22-11.22-1.24-.42.09-81-.24-.9-.66-.09-.42.24-.81.66-.9 4.86-1.08 9.12-.6 12.54 1.56.36.24.48.72.24 1.08zm1.5-3.3c-.3.42-.9.54-1.32.24-3.42-2.1-8.64-2.73-12.66-1.49-.48.15-1.02-.12-1.17-.6-.15-.48.12-1.02.6-1.17 4.5-1.38 10.35-.66 14.31 1.74.42.3.54.9.24 1.32zm.12-3.45C14.94 8.34 8.67 8.16 5.04 9.24c-.57.18-1.17-.15-1.35-.72-.18-.57.15-1.17.72-1.35 4.14-1.23 11.25-1.02 15.42 1.47.51.3.69.96.39 1.47-.3.51-.96.69-1.47.39z"/>
+            </svg>
+         </a>
       </div>
+      <button onClick={()=>setShowContrib(true)} className="glass p-3 rounded-full hover:bg-white/10 transition"><Users size={16} className="text-white/80"/></button>
+      <button onClick={()=>setShowChai(true)} className="glass p-3 rounded-full hover:bg-white/10 transition"><Coffee size={16} className="text-white/80"/></button>
+    </div>
+  </div>
 
-      {/* 2. THE UI CONTENT (Scrollable) */}
-      <div className="relative z-20 h-full w-full overflow-y-auto scrollbar-hide pb-20">
+  {/* Hero Pujo Asche Section */}
+  <section className="relative z-10 pt-32 pb-8 flex flex-col items-center text-center px-4">
+     <h1 className="bengali text-6xl md:text-8xl font-bold text-[#f2ca55] drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]">পুজো আসছে</h1>
+     <p className="mt-3 text-sm tracking-[0.2em] text-white/90 font-medium drop-shadow-md">{pujoDays} days until Durga Pujo</p>
+  </section>
+
+  {/* Browse Playlists Button */}
+  <section className="relative z-10 mx-auto max-w-2xl px-5 flex justify-center mb-10">
+    <button onClick={()=>setShowPlaylist(true)} className="glass bg-[#2a2225]/80 hover:bg-[#2a2225] border border-white/10 rounded-full px-6 py-3 flex items-center gap-3 text-xs tracking-widest text-white/90 font-semibold uppercase shadow-xl transition-all cursor-pointer">
+      <ListMusic size={16} className="text-[#f2ca55]" /> Browse Playlists <ChevronDown size={14} className="text-white/50"/>
+    </button>
+  </section>
+
+  {/* Mood Room Section */}
+  <section className="mx-auto max-w-4xl px-5 pt-4 md:px-12">
+    <div className="glass rounded-[30px] p-5 md:p-7">
+      <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+        <div>
+          <div className="text-xs uppercase tracking-[.28em] text-white/45">Mood room</div>
+          <h2 className="bengali mt-1 text-2xl font-semibold">আজ মনটা কেমন?</h2>
+        </div>
+        <div className="flex items-center gap-2 rounded-full border border-white/10 bg-black/20 px-4 py-2 md:w-80">
+          <Search size={18} className="text-white/45"/>
+          <input value={q} onChange={e=>setQ(e.target.value)} placeholder="গান বা শিল্পী খুঁজুন" className="w-full bg-transparent outline-none placeholder:text-white/35 text-white text-sm"/>
+        </div>
+      </div>
+      <div className="scrollbar mt-5 flex gap-3 overflow-x-auto pb-1">
+        {moods.map(([icon,label])=>(
+          <button key={label} onClick={()=>setMood(mood===label?'':label)} className={`whitespace-nowrap rounded-full border px-4 py-2 text-sm transition ${mood===label?'border-[#f2ca55]/60 bg-[#f2ca55]/15 text-[#f2ca55]':'border-white/10 bg-white/5 text-white/70'}`}>
+            {icon} {label}
+          </button>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* Old Calcutta Room Section */}
+  <section className="mx-auto max-w-4xl px-5 pt-10 md:px-12">
+    <div className="glass relative overflow-hidden rounded-[34px] p-7 md:p-10">
+      <div className="absolute -right-16 -top-20 h-60 w-60 rounded-full bg-[#f2ca55]/10 blur-3xl"/>
+      <div className="max-w-2xl">
+        <div className="text-xs uppercase tracking-[.28em] text-white/40">Old Calcutta room</div>
+        <h2 className="section-title mt-3 text-4xl md:text-5xl">শহর, স্মৃতি, আর কিছু পুরনো গান।</h2>
+        <p className="bengali mt-4 leading-8 text-white/60">Coffee House-এর আড্ডা, বৃষ্টির জানলা, হলুদ রাস্তার আলো—Vintage Old Calcutta collection-এ শহরের অন্য একটা সময়কে শুনে নাও।</p>
+        <button onClick={()=>{setMood('কলকাতার সন্ধ্যা'); setShowPlaylist(true);}} className="mt-6 rounded-full border border-[#f2ca55]/30 bg-[#f2ca55]/10 px-5 py-3 text-[#f2ca55] text-sm hover:bg-[#f2ca55]/20 transition">কলকাতার সন্ধ্যা চালাও</button>
+      </div>
+    </div>
+  </section>
+
+  {/* Footer */}
+  <footer className="mx-auto flex max-w-4xl flex-col gap-4 px-5 pb-10 pt-14 text-sm text-white/40 md:flex-row md:items-center md:justify-between md:px-12">
+    <div><span className="bengali text-lg text-white/70">মনের কথা</span> · made with bhalobasha</div>
+    <button onClick={()=>setShowContrib(true)} className="hover:text-white transition">About the creator</button>
+  </footer>
+
+  {/* Modals & Popups */}
+  <AnimatePresence>
+    {showPlaylist&&<motion.div initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} className="fixed inset-0 z-[70] bg-black/60 backdrop-blur-sm flex flex-col justify-end sm:grid sm:place-items-center">
+      <motion.div initial={{y:"100%"}} animate={{y:0}} exit={{y:"100%"}} transition={{type:"spring", damping:25, stiffness:200}} className="w-full sm:max-w-md bg-[#1a1518]/95 border-t border-white/10 rounded-t-[34px] sm:rounded-[34px] p-6 h-[85vh] sm:h-[650px] flex flex-col shadow-[0_-10px_40px_rgba(0,0,0,0.5)]">
         
-        {/* Top Navbar */}
-        <div className="flex justify-between items-center p-6">
-          <div className="flex items-center gap-2 bg-white/10 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/5">
-            <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-            <span className="text-white text-xs font-medium">252 online</span>
-          </div>
-          
-          <div className="flex gap-2">
-            <div className="flex items-center gap-3 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/5 text-white">
-              <Play size={14} />
-              <div className="w-4 h-4 bg-[#1DB954] rounded-full flex items-center justify-center text-black font-bold text-[8px]">S</div>
-            </div>
-            <button className="w-9 h-9 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center text-white border border-white/5"><User size={14} /></button>
-            <button className="w-9 h-9 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center text-white border border-white/5"><Coffee size={14} /></button>
+        <div className="flex justify-between items-center mb-6">
+          <span className="text-[11px] tracking-[0.3em] text-white/60 font-bold uppercase">Playlists</span>
+          <button onClick={()=>setShowPlaylist(false)} className="text-white/50 hover:text-white p-2 -mr-2"><X size={18}/></button>
+        </div>
+        
+        <div className="flex gap-6 border-b border-white/10 pb-4 mb-4 overflow-x-auto">
+           {tabs.map(tab => (
+             <button key={tab} onClick={()=>setActiveTab(tab)} className={`text-[11px] font-bold tracking-[0.15em] uppercase whitespace-nowrap transition-all duration-300 ${activeTab===tab ? 'text-white' : 'text-white/40 hover:text-white/70'}`}>
+               {tab}
+             </button>
+           ))}
+        </div>
+        
+        <p className="text-xs text-white/40 mb-5 font-medium">The main curated {activeTab.toLowerCase()} playlist.</p>
+        
+        <div className="flex-1 overflow-y-auto pb-20 flex flex-col gap-1 pr-2">
+           {filtered.map((s, i) => (
+              <div key={s.id} onClick={()=>{play(s); setShowPlaylist(false);}} className={`flex items-center gap-4 rounded-2xl p-2 cursor-pointer transition-all ${active?.id === s.id ? 'bg-white/10' : 'hover:bg-white/5'}`}>
+                 <span className={`text-sm font-medium w-6 text-center ${active?.id === s.id ? 'text-[#f2ca55]' : 'text-white/40'}`}>{(i+1).toString().padStart(2, '0')}</span>
+                 <img src={s.cover} className="w-[46px] h-[46px] rounded-[10px] object-cover shadow-md" />
+                 <div className="flex-1 min-w-0">
+                   <div className={`truncate font-semibold text-sm ${active?.id === s.id ? 'text-[#f2ca55]' : 'text-white/90'}`}>{s.title}</div>
+                   <div className="truncate text-xs text-white/50 mt-0.5">{s.artist}</div>
+                 </div>
+                 <span className="text-[11px] text-white/30">{s.duration}</span>
+              </div>
+           ))}
+        </div>
+      </motion.div>
+    </motion.div>}
+
+    {showChai&&<motion.div initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} className="fixed inset-0 z-[80] bg-black/80 backdrop-blur-md grid place-items-center p-5">
+      <motion.div initial={{y:30,scale:.97}} animate={{y:0,scale:1}} exit={{y:30,scale:.97}} className="glass relative w-full max-w-sm rounded-[34px] p-8 text-center">
+        <button onClick={()=>setShowChai(false)} className="absolute right-5 top-5 rounded-full bg-white/5 p-2"><X size={18}/></button>
+        <div className="text-xs uppercase tracking-[0.3em] text-white/50 font-semibold mt-2">Buy us a Chai</div>
+        <p className="mt-4 text-sm text-white/70 leading-relaxed">If Moner Kotha made your Pujo a little nicer, you know what to do. One cup of chai, and we're back to the adda.</p>
+        <div className="mt-6 bg-white p-3 rounded-2xl inline-block shadow-xl">
+           <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=9366745761@fam" alt="QR Code" className="w-48 h-48 rounded-xl opacity-90"/>
+        </div>
+        <p className="mt-4 text-xs text-white/40">Scan with any UPI app</p>
+        <div className="mt-4 bg-black/30 border border-white/10 rounded-full py-3 px-5 flex justify-between items-center">
+           <span className="text-sm text-white/60 font-mono">9366745761@fam</span>
+           <button className="text-xs text-[#f2ca55] font-bold tracking-wider" onClick={() => navigator.clipboard.writeText('9366745761@fam')}>COPY</button>
+        </div>
+      </motion.div>
+    </motion.div>}
+
+    {showContrib&&<motion.div initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} className="fixed inset-0 z-[80] bg-black/80 backdrop-blur-md grid place-items-center p-5">
+      <motion.div initial={{y:30,scale:.97}} animate={{y:0,scale:1}} exit={{y:30,scale:.97}} className="glass relative w-full max-w-sm rounded-[34px] p-8 text-center">
+        <button onClick={()=>setShowContrib(false)} className="absolute right-5 top-5 rounded-full bg-white/5 p-2"><X size={18}/></button>
+        <div className="text-xs uppercase tracking-[.35em] text-white/45 mt-2">Made with bhalobasha by</div>
+        <div className="mt-6 rounded-[28px] border border-white/10 bg-black/20 p-7 text-center">
+          <img src="https://raw.githubusercontent.com/SagnikChakraborty27d/moner-kotha/main/sagnik-profile.png" alt="Sagnik Chakraborty" className="mx-auto h-28 w-28 rounded-full object-cover ring-2 ring-white/15"/>
+          <h3 className="mt-5 text-2xl font-semibold">Sagnik Chakraborty</h3>
+          <p className="mt-2 text-sm text-white/50">Founder • Developer • Music Curator</p>
+          <div className="mt-5 flex justify-center gap-4">
+            <a href="https://www.instagram.com/schakraborty_floyd" target="_blank" className="p-3 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition text-white/70 hover:text-white">
+              <Instagram size={18} />
+            </a>
+            <a href="https://www.linkedin.com/in/sagnik-chakraborty-0ab57240a" target="_blank" className="p-3 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition text-white/70 hover:text-white">
+              <Linkedin size={18} />
+            </a>
           </div>
         </div>
+      </motion.div>
+    </motion.div>}
+  </AnimatePresence>
 
-        {/* Bluetooth Indicator */}
-        <div className="flex justify-center w-full mb-4">
-           <div className="flex items-center gap-2 text-xs font-semibold text-[#e8bc66] bg-black/40 px-4 py-1.5 rounded-full backdrop-blur-md border border-[#e8bc66]/20">
-             <Headphones size={14} />
-             BLUETOOTH CONNECTED: 🎧 Sagnik's Pods Pro
+  {active&&<><audio src={active.previewUrl} autoPlay className="hidden" />
+    <motion.div initial={{y:100}} animate={{y:0}} className="fixed bottom-4 left-4 right-4 z-[60]">
+      <div className="glass rounded-[32px] p-5 shadow-2xl flex flex-col gap-4 border border-white/10 bg-[#3a3033]/60 backdrop-blur-2xl">
+        
+        <div className="flex justify-center -mt-8">
+           <button onClick={()=>setShowPlaylist(true)} className="glass bg-[#2a2225] hover:bg-[#3a3033] transition-colors border border-white/10 rounded-full px-5 py-1.5 flex items-center gap-2 text-[10px] tracking-widest text-white/70 font-semibold uppercase shadow-lg cursor-pointer">
+             <ListMusic size={12}/> PLAYLIST <ChevronDown size={12}/>
+           </button>
+        </div>
+
+        <div className="flex items-center gap-4">
+           <img src={active.cover} className="w-[72px] h-[72px] rounded-2xl object-cover shadow-lg" />
+           <div className="flex-1 min-w-0">
+              <div className="font-bold text-white truncate text-lg">{active.title}</div>
+              <div className="text-sm text-white/60 truncate">{active.artist}</div>
+              
+              <div className="w-full bg-white/10 h-1 mt-3 rounded-full overflow-hidden">
+                <div className="bg-white/80 h-1 w-1/3 rounded-full animate-pulse"></div>
+              </div>
+              <div className="text-[10px] text-white/40 mt-1">0:32 / {active.duration}</div>
+           </div>
+           
+           <div className="flex items-center gap-3">
+              <button className="text-white/60 hover:text-white"><SkipBack size={20}/></button>
+              <button onClick={()=>setActive(null)} className="bg-white text-[#2a2225] p-3 rounded-full shadow-lg hover:scale-105 transition"><Pause size={20} fill="currentColor"/></button>
+              <button className="text-white/60 hover:text-white"><SkipForward size={20}/></button>
            </div>
         </div>
 
-        {/* Hero Section (Countdown) */}
-        <div className="flex flex-col items-center mt-2 mb-8">
-          <h1 className="text-[#e8bc66] text-5xl font-bold tracking-wider mb-3 drop-shadow-lg" style={{ fontFamily: 'serif' }}>
-            পুজো আসছে
-          </h1>
-          <p className="text-gray-300 text-sm tracking-widest font-medium">55 days until Durga Pujo</p>
-          
-          <button className="mt-6 flex items-center gap-2 bg-white/5 backdrop-blur-md border border-white/10 text-white px-6 py-2.5 rounded-full text-xs font-bold tracking-widest hover:bg-white/10 transition">
-            <Menu size={14} className="text-[#e8bc66]" /> BROWSE PLAYLISTS
-          </button>
-        </div>
-
-        {/* --- NEW FEATURE: THE MUSIC PLAYER CARD --- */}
-        <div className="px-5 mb-6">
-          <div className="w-full p-5 flex flex-col bg-white/5 backdrop-blur-xl border border-white/10 rounded-[2rem] shadow-2xl">
-            
-            {/* Deep-Links */}
-            <div className="absolute top-5 right-5 flex gap-2">
-               <a href={activeSong.links.apple} className="p-2 rounded-full bg-white/10 text-white hover:bg-white/20"><Apple size={16} /></a>
-               <a href={activeSong.links.spotify} className="flex items-center justify-center w-8 h-8 rounded-full bg-[#1DB954]/20 text-[#1DB954] font-bold hover:bg-[#1DB954]/40">S</a>
-            </div>
-
-            <h2 className="text-gray-400 text-[10px] font-bold tracking-[0.2em] mb-4 uppercase">NOW PLAYING</h2>
-            
-            <div className="flex items-center gap-4 mb-4">
-              <img 
-                src={`https://img.youtube.com/vi/${activeSong.youtubeId}/hqdefault.jpg`}
-                alt={activeSong.title}
-                className="w-20 h-20 rounded-2xl object-cover shadow-lg border border-white/10"
-              />
-              <div className="flex-1 overflow-hidden">
-                <h3 className="text-[#e8bc66] text-xl font-bold tracking-tight truncate">{activeSong.title}</h3>
-                <p className="text-gray-200 text-sm font-semibold">{activeSong.artist}</p>
-                <p className="text-gray-400 text-[10px] mt-1 truncate">{activeSong.metadata}</p>
-              </div>
-            </div>
-            
-            <div className="flex items-center justify-between w-full mt-2">
-              <button 
-                onClick={() => setIsPlaying(!isPlaying)}
-                className="bg-[#e8bc66] text-black px-8 py-2.5 rounded-full font-bold text-xs hover:scale-105 transition"
-              >
-                {isPlaying ? "PAUSE" : "PLAY TRACK"}
-              </button>
-              
-              <a 
-                 href="/albums/pujo.zip" 
-                 download="pujo.zip"
-                 className="flex items-center gap-2 bg-white/10 text-white px-4 py-2.5 rounded-full text-xs font-semibold hover:bg-white/20 transition"
-               >
-                 <Download size={14} /> ALBUM.ZIP
-              </a>
-            </div>
-          </div>
-        </div>
-
-        {/* 3. THE ORIGINAL CARDS (Mood Room & Old Calcutta) */}
-        <div className="px-5 space-y-4">
-          
-          {/* Mood Room Card */}
-          <div className="bg-white/5 backdrop-blur-xl border border-white/10 p-6 rounded-[2rem]">
-            <p className="text-gray-400 text-xs tracking-[0.2em] mb-2 uppercase">Mood Room</p>
-            <h2 className="text-white text-2xl font-bold mb-5" style={{ fontFamily: 'serif' }}>আজ মনটা কেমন?</h2>
-            
-            <div className="flex items-center gap-3 bg-black/40 rounded-full px-4 py-3 border border-white/5 mb-4">
-              <Search size={16} className="text-gray-400" />
-              <input type="text" placeholder="গান বা শিল্পী খুঁজুন" className="bg-transparent text-sm text-white focus:outline-none w-full" />
-            </div>
-
-            <div className="flex gap-3 overflow-x-auto scrollbar-hide pb-2">
-              <button className="flex items-center gap-2 bg-black/40 px-4 py-2 rounded-full border border-white/5 whitespace-nowrap text-sm text-gray-200">
-                🔥 পুজোর সকাল
-              </button>
-              <button className="flex items-center gap-2 bg-black/40 px-4 py-2 rounded-full border border-white/5 whitespace-nowrap text-sm text-gray-200">
-                🌧️ Rainy Day
-              </button>
-              <button className="flex items-center gap-2 bg-black/40 px-4 py-2 rounded-full border border-white/5 whitespace-nowrap text-sm text-gray-200">
-                ☕
-              </button>
-            </div>
-          </div>
-
-          {/* Old Calcutta Room Card */}
-          <div className="bg-white/5 backdrop-blur-xl border border-white/10 p-6 rounded-[2rem]">
-            <p className="text-gray-400 text-xs tracking-[0.2em] mb-2 uppercase">Old Calcutta Room</p>
-            <h2 className="text-white text-3xl font-bold mb-4 leading-tight" style={{ fontFamily: 'serif' }}>
-              শহর, স্মৃতি, আর কিছু পুরনো গান ।
-            </h2>
-            <p className="text-gray-400 text-sm leading-relaxed mb-6">
-              Coffee House-এর আড্ডা, বৃষ্টির জানলা, হলুদ রাস্তার আলো—Vintage Old Calcutta collection-এ শহরের অন্য একটা সময়কে শুনে নাও।
-            </p>
-            <button className="border border-[#e8bc66]/50 text-[#e8bc66] px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-[#e8bc66]/10 transition">
-              কলকাতার সন্ধ্যা চালাও
-            </button>
-          </div>
-
+        <div className="flex justify-between items-center pt-3 border-t border-white/10 text-xs text-white/50 px-2 font-medium">
+           <button className="flex items-center gap-2 hover:text-white transition"><Shuffle size={14}/> Shuffle</button>
+           <button className="flex items-center gap-2 hover:text-white transition"><Repeat size={14}/> Repeat</button>
+           <button className="flex items-center gap-2 hover:text-[#f2ca55] transition text-white/70"><Music2 size={14}/> Dhak</button>
         </div>
       </div>
-    </div>
-  );
-}
+    </motion.div>
+  </>}
+ </main>
+  }

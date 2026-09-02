@@ -51,7 +51,7 @@ export default function Home(){
    setIsPlaying(true);
  };
  
- return <main className="min-h-screen pb-40 text-white" style={{ backgroundImage: "linear-gradient(to bottom, rgba(9, 8, 12, 0.4), rgba(9, 8, 12, 0.85)), url('https://raw.githubusercontent.com/SagnikChakraborty27d/moner-kotha/main/public/backgrounds/286dd9e4-0161-4bdd-8257-c9e3a33f9729.png')", backgroundSize: "cover", backgroundPosition: "center", backgroundAttachment: "fixed" }}>
+ return <main className="min-h-screen pb-45 text-white relative overflow-x-hidden" style={{ backgroundImage: "linear-gradient(to bottom, rgba(9, 8, 12, 0.35), rgba(9, 8, 12, 0.82)), url('https://raw.githubusercontent.com/SagnikChakraborty27d/moner-kotha/main/public/backgrounds/286dd9e4-0161-4bdd-8257-c9e3a33f9729.png')", backgroundSize: "cover", backgroundPosition: "top center", backgroundAttachment: "fixed" }}>
   
   {/* Cinematic Intro Splash Screen */}
   <AnimatePresence>
@@ -65,37 +65,64 @@ export default function Home(){
   </AnimatePresence>
 
   {/* Top Navigation Bar */}
-  <div className="fixed top-0 left-0 right-0 p-4 flex justify-between items-center z-40 backdrop-blur-xl bg-black/20 border-b border-white/10">
-    <div className="glass rounded-full px-4 py-2 flex items-center gap-2 bg-black/30 border border-white/15">
+  <div className="fixed top-0 left-0 right-0 p-4 flex justify-between items-center z-40 backdrop-blur-md bg-black/10 border-b border-white/5">
+    <div className="glass rounded-full px-4 py-2 flex items-center gap-2 bg-black/20 border border-white/10">
       <div className="w-2 h-2 bg-[#00ff88] rounded-full animate-pulse shadow-[0_0_8px_#00ff88]"/>
       <span className="text-xs font-medium text-white/90">252 online</span>
     </div>
     <div className="flex items-center gap-2">
-      <div className="glass rounded-full flex items-center p-1 px-2 gap-1 bg-black/30 border border-white/15">
-         <button onClick={()=>setShowPlaylist(true)} className="p-2 hover:bg-white/10 rounded-full transition"><Play size={14} className="text-white/80"/></button>
+      <div className="glass rounded-full flex items-center p-1 px-2 gap-2 bg-black/20 border border-white/10">
+         <button onClick={()=>setShowPlaylist(true)} className="p-2 hover:bg-white/10 rounded-full transition"><Play size={14} className="text-white/85"/></button>
          <a href="https://open.spotify.com/playlist/51quSl18YnTjrII2uYmyYT" target="_blank" rel="noopener noreferrer" className="p-2 hover:bg-white/10 rounded-full transition flex items-center justify-center">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" className="text-[#1DB954]">
                <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm5.521 17.34c-.24.359-.72.48-1.08.24-2.999-1.8-6.78-2.22-11.22-1.24-.42.09-81-.24-.9-.66-.09-.42.24-.81.66-.9 4.86-1.08 9.12-.6 12.54 1.56.36.24.48.72.24 1.08zm1.5-3.3c-.3.42-.9.54-1.32.24-3.42-2.1-8.64-2.73-12.66-1.49-.48.15-1.02-.12-1.17-.6-.15-.48.12-1.02.6-1.17 4.5-1.38 10.35-.66 14.31 1.74.42.3.54.9.24 1.32zm.12-3.45C14.94 8.34 8.67 8.16 5.04 9.24c-.57.18-1.17-.15-1.35-.72-.18-.57.15-1.17.72-1.35 4.14-1.23 11.25-1.02 15.42 1.47.51.3.69.96.39 1.47-.3.51-.96.69-1.47.39z"/>
             </svg>
          </a>
       </div>
-      <button onClick={()=>setShowContrib(true)} className="glass p-3 rounded-full hover:bg-white/10 transition bg-black/30 border border-white/15"><Users size={16} className="text-white/80"/></button>
-      <button onClick={()=>setShowChai(true)} className="glass p-3 rounded-full hover:bg-white/10 transition bg-black/30 border border-white/15"><Coffee size={16} className="text-white/80"/></button>
+      <button onClick={()=>setShowContrib(true)} className="glass p-3 rounded-full hover:bg-white/10 transition bg-black/20 border border-white/10"><Users size={16} className="text-white/85"/></button>
+      <button onClick={()=>setShowChai(true)} className="glass p-3 rounded-full hover:bg-white/10 transition bg-black/20 border border-white/10"><Coffee size={16} className="text-white/85"/></button>
+    </div>
+  </div>
+
+  {/* Bluetooth Connected / Now Playing Simulation Badge */}
+  <div className="pt-24 px-4 flex justify-center z-10 relative">
+    <div className="glass rounded-full px-5 py-2 flex items-center gap-2 bg-black/40 border border-white/15 shadow-xl backdrop-blur-md">
+      <span className="w-2 h-2 rounded-full bg-[#f2ca55] animate-ping"/>
+      <span className="text-[11px] tracking-wider uppercase font-semibold text-white/90">BLUETOOTH CONNECTED: <span className="text-[#f2ca55]">Sagnik's Pods Pro</span></span>
     </div>
   </div>
 
   {/* Hero Pujo Asche Section */}
-  <section className="relative z-10 pt-36 pb-8 flex flex-col items-center text-center px-4">
-     <h1 className="bengali text-6xl md:text-8xl font-bold text-[#f2ca55] drop-shadow-[0_4px_16px_rgba(0,0,0,0.7)]">পুজো আসছে</h1>
-     <p className="mt-3 text-sm tracking-[0.2em] text-white/90 font-medium drop-shadow-md">{pujoDays} days until Durga Pujo</p>
+  <section className="relative z-10 pt-4 pb-6 flex flex-col items-center text-center px-4">
+     <h1 className="bengali text-6xl md:text-8xl font-bold text-[#f2ca55] drop-shadow-[0_4px_16px_rgba(0,0,0,0.8)]">পুজো আসছে</h1>
+     <p className="mt-2 text-sm tracking-[0.2em] text-white/90 font-medium drop-shadow-md">{pujoDays} days until Durga Pujo</p>
   </section>
 
   {/* Browse Playlists Button */}
-  <section className="relative z-10 mx-auto max-w-2xl px-5 flex justify-center mb-10">
+  <section className="relative z-10 mx-auto max-w-2xl px-5 flex justify-center mb-8">
     <button onClick={()=>setShowPlaylist(true)} className="glass bg-[#1a1417]/80 hover:bg-[#251d21] border border-white/15 rounded-full px-6 py-3.5 flex items-center gap-3 text-xs tracking-widest text-white/90 font-semibold uppercase shadow-2xl transition-all cursor-pointer backdrop-blur-xl">
-      <ListMusic size={16} className="text-[#f2ca55]" /> Browse Playlists <ChevronDown size={14} className="text-white/50"/>
+      <ListMusic size={16} className="text-[#f2ca55]" /> BROWSE PLAYLISTS <ChevronDown size={14} className="text-white/50"/>
     </button>
   </section>
+
+  {/* Now Playing Active Card (From your preferred layout style) */}
+  {active && (
+    <section className="mx-auto max-w-4xl px-5 pb-6 md:px-12 relative z-10">
+      <div className="glass rounded-[32px] p-6 md:p-8 bg-black/50 border border-white/20 backdrop-blur-2xl shadow-[0_15px_35px_rgba(0,0,0,0.8)] flex flex-col md:flex-row items-center gap-6">
+        <img src={active.cover} alt={active.title} className="w-24 h-24 md:w-28 md:h-28 rounded-2xl object-cover shadow-2xl border border-white/15" />
+        <div className="flex-1 text-center md:text-left min-w-0">
+          <div className="text-[10px] uppercase tracking-[0.3em] text-[#f2ca55] font-bold">Now Playing</div>
+          <h3 className="font-bold text-white text-2xl truncate mt-1">{active.title}</h3>
+          <p className="text-sm text-white/70 truncate">{active.artist}</p>
+          <div className="flex items-center justify-center md:justify-start gap-4 mt-4">
+            <button onClick={()=>setIsPlaying(!isPlaying)} className="bg-[#f2ca55] text-black px-6 py-2.5 rounded-full text-xs font-bold tracking-widest uppercase shadow-lg hover:scale-105 transition cursor-pointer flex items-center gap-2">
+              {isPlaying ? <Pause size={14} fill="currentColor"/> : <Play size={14} fill="currentColor"/>} {isPlaying ? 'PAUSE TRACK' : 'PLAY TRACK'}
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
 
   {/* Mood Room Section */}
   <section className="mx-auto max-w-4xl px-5 pt-2 md:px-12">
@@ -219,9 +246,11 @@ export default function Home(){
       playing={isPlaying} 
       controls={false}
       volume={1}
+      onEnded={()=>setIsPlaying(false)}
     />
   </div>}
 
+  {/* Persistent Audio Bottom Bar */}
   {active&&<motion.div initial={{y:100}} animate={{y:0}} className="fixed bottom-4 left-4 right-4 z-[60] max-w-2xl mx-auto">
       <div className="glass rounded-[32px] p-4 md:p-5 shadow-[0_10px_30px_rgba(0,0,0,0.8)] flex flex-col gap-3 border border-white/15 bg-[#251d21]/90 backdrop-blur-2xl">
         
@@ -258,4 +287,4 @@ export default function Home(){
       </div>
     </motion.div>}
  </main>
-  }
+}

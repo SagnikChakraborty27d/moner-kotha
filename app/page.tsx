@@ -51,13 +51,13 @@ export default function Home(){
    setIsPlaying(true);
  };
  
- return <main className="min-h-screen pb-40 text-white" style={{ backgroundImage: "linear-gradient(to bottom, rgba(9, 8, 12, 0.4), rgba(9, 8, 12, 0.85)), url('/backgrounds/286dd9e4-0161-4bdd-8257-c9e3a33f9729.png')", backgroundSize: "cover", backgroundPosition: "center", backgroundAttachment: "fixed" }}>
+ return <main className="min-h-screen pb-40 text-white" style={{ backgroundImage: "linear-gradient(to bottom, rgba(9, 8, 12, 0.4), rgba(9, 8, 12, 0.85)), url('https://raw.githubusercontent.com/SagnikChakraborty27d/moner-kotha/main/public/backgrounds/286dd9e4-0161-4bdd-8257-c9e3a33f9729.png')", backgroundSize: "cover", backgroundPosition: "center", backgroundAttachment: "fixed" }}>
   
   {/* Cinematic Intro Splash Screen */}
   <AnimatePresence>
     {showSplash && (
     <motion.div initial={{opacity:1}} exit={{opacity:0}} transition={{duration:0.8}} className="fixed inset-0 z-[100] bg-[#09080c] flex flex-col items-center justify-center p-6 text-center">
-        <motion.img initial={{scale:0.8, opacity:0}} animate={{scale:1, opacity:1}} transition={{duration:1}} src="/231fb176-3eb3-4c0e-88a3-13abfe31ba2b.png" alt="Moner Kotha Logo" className="w-36 h-36 md:w-48 md:h-48 rounded-full object-cover shadow-[0_0_30px_rgba(242,202,85,0.3)] border-2 border-[#f2ca55]/40 mb-6" />
+        <motion.img initial={{scale:0.8, opacity:0}} animate={{scale:1, opacity:1}} transition={{duration:1}} src="https://raw.githubusercontent.com/SagnikChakraborty27d/moner-kotha/main/app/231fb176-3eb3-4c0e-88a3-13abfe31ba2b.png" alt="Moner Kotha Logo" className="w-36 h-36 md:w-48 md:h-48 rounded-full object-cover shadow-[0_0_30px_rgba(242,202,85,0.3)] border-2 border-[#f2ca55]/40 mb-6" />
         <motion.h1 initial={{y:20, opacity:0}} animate={{y:0, opacity:1}} transition={{delay:0.3, duration:0.8}} className="bengali text-3xl md:text-4xl font-bold text-[#f2ca55] tracking-wide">শহরটা গান গায় যখন</motion.h1>
         <motion.p initial={{y:20, opacity:0}} animate={{y:0, opacity:1}} transition={{delay:0.5, duration:0.8}} className="mt-2 text-xs md:text-sm tracking-[0.3em] text-white/60 uppercase font-medium">Entering the lanes of nostalgia...</motion.p>
       </motion.div>
